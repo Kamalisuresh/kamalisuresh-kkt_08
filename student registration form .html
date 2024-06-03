@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+ <html lang="en">
+    <head>
+        <style>
+           h1{
+                color:rgb(37, 35, 35);
+            }
+        form{
+            color: rgb(32, 38, 216);
+            width:60%;
+            margin: auto;
+            font-size: medium;
+            background-color: blanchedalmond;
+            
+        }
+        label{
+            width: 240px;
+            display: inline-block;
+            text-align: center;
+            padding: 20px;
+        }
+        td,th,table{
+            border: ipx solid black;
+            border-collapse: collapse;
+            background-color: blanchedalmond;    
+        }
+        #state{
+            margin-top:-20px;
+        }
+        
+        </style >
+       
+        <title>student registration form</title>
+    </head>
+
+    <body>
+        <form>
+            <center><h1><mark>STUDENT REGISTRATION FORM</mark></h1></center>
+            <h1><center><q><abbr title="AVINASHILINGAM">AVINUTY</abbr> INSTITUTION FORM</q></center></h1>
+            <center><a href="C:\Users\kamal\OneDrive\Desktop\rules.asp" target="_blank">This is a link for rules</a><br></center><br>
+    
+            <label>First Name</label>
+            <input type="text" id="first-name" placeholder="Maximum 20 letters A-Z" maxlength="20" required><br>
+    
+            <label>Last Name</label>
+            <input type="text" id="last-name" placeholder="Maximum 20 letters A-Z" maxlength="20" required><br>
+    
+            <label>Guardian</label>
+            <input type="text" id="guardian" placeholder="Maximum 20 letters A-Z" maxlength="20"><br>
+    
+            <label>DOB</label>
+            <input type="date" name="dob" id="dob"><br>
+    
+            <label>Email</label>
+            <input type="email" placeholder="example *****@gmail.com" id="email-id"><br>
+    
+            <label>Password</label>
+            <input type="password" name="password"><br>
+    
+            <label>Phone Number</label>
+            <select>
+                <option value="91(india)" selected>+91 india</option>
+                <option value="44(uk)">+44 uk</option>
+                <option value="+1(usa)">+1 usa</option>
+            </select>
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" /><br>
+            <label>Gender</label>
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other<br>
+    
+            <label id="address">Address</label>
+             <textarea></textarea><br>
+    
+            <label>State</label>
+            <select id="state" onchange="toggle()">
+                <option value="mp" selected>MP</option>
+                <option value="up">UP</option>
+                <option value="kerala">Kerala</option>
+                <option value="tamilnadu">Tamil Nadu</option>
+                <option value="others">others</option>
+            </select><br>
+            <input type="text" name="state" id="state" style='display:none;'/><br>
+
+            <label>City</label>
+            <select id="select">
+                <option value="coimbatore" selected>Coimbatore</option>
+                <option value="erode">Erode</option>
+                <option value="salem">Salem</option>
+                <option value="chennai">Chennai</option>
+            </select><br>
+            <label>Pincode</label>
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" /><br>
+    
+            <label>Aadhar Card</label>
+            <input type="file" id="aadhar"name="aadhar_card" accept="image/png,image/jpeg"><br>
+    
+            <label>Courses Available (choose any one)</label>
+            <input type="checkbox" id="course1" name="course1" value="CSE"checked> CSE
+            <input type="checkbox" id="course2" name="course2" value="AI&DS"> AI&DS
+            <input type="checkbox" id="course3" name="course3" value="BMIE"> BMIE
+            <input type="checkbox" id="course4" name="course4" value="ECE"> ECE
+            <input type="checkbox" id="course5" name="course5" value="CIVIL"> CIVIL
+    
+            <label>Qualification</label><br>
+            <label>12th Marksheet</label>
+            <input type="file"><br>
+    
+            <label>10th Marksheet</label>
+            <input type="file"><br>
+            <label>Photo</label>
+            <input type="file" id="file-input" multiple> You can only upload 3 files<br>
+            
+    
+            <label>Fill the details below</label>/         
+               <table align="center" id="myTable">
+                <th>
+                <tr>
+                    <th>School</th>
+                    <th>Board</th>
+                    <th>Year of Passing</th>
+                    <th></th>
+                </tr>
+            </th>
+                <tbody>
+                <tr>
+                    <td><input type="text"   id="school" name="school[]"></td>
+                    <td><input type="text"  id="board" name="bord[]"></td>
+                    <td><input type="text"  id="yearofpassing" name="yearofpassing[]"></td>
+                    <td><button type="button" onclick="removeRow(this)">X</buuton></td><br><br>
+                </tr>
+                <tr>
+            <td><input type="text"   id="school" name="school[]"></td>
+            <td><input type="text"  id="board" name="bord[]"></td>
+            <td><input type="text"  id="yearofpassing" name="yearofpassing[]"></td>
+            <td><button type="button" onclick="removeRow(this)">X</buuton></td><br><br>
+                  
+                </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="addRow()">+</button><br><br>
+            <label>Declaration</label>
+
+            <center>
+                <input type="checkbox"> The proof submitted was true to your knowledge. If any illegal activities are found, actions will be taken.
+            </center><br>
+
+            <center><input type="submit" style="background-color: chartreuse;"><br></center>
+            <p>If any error, mail to <a href="mailto:kamalimeenashi@gmail.com">this mail</a></p>
+        </form>
+    
+        <script>
+            document.getElementById('file-input').addEventListener('change', function() {
+                const maxFiles = 3;
+                if (this.files.length > maxFiles) {
+                    alert('You can only upload up to ' + maxFiles + ' files.');
+                    this.value = ''; 
+                }
+            });
+            function addRow() {
+            var table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td><input type="text" name="school[]"></td>
+                <td><input type="text" name="board[]"></td>
+                <td><input type="text" name="yearofpassing[]"></td>
+                <td><button type="button" onclick="removeRow(this)">X</button></td>
+            `;
+        }
+
+        function removeRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+</script>
+    </body>
+    </html>
